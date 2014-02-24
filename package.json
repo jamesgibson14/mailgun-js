@@ -19,6 +19,10 @@
     "node": ">= 0.8.0"
   },
   "main": "./mailgun.js",
+  "dependencies": {
+    "inflection": "~1.2.6",
+    "path-proxy": "~1.0"
+  },
   "devDependencies": {
     "mocha": "*"
   },
