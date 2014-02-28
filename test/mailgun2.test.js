@@ -21,5 +21,40 @@ module.exports = {
       assert(/Queued. Thank you./.test(body.message));
       done();
     });
+  },
+
+  'test domains.list()': function (done) {
+    mailgun.domains().list(function (err, res, body) {
+      assert.ifError(err);
+      assert.equal(200, res.statusCode);
+      assert.ok(body.total_count);
+      assert.ok(body.items);
+      done();
+    });
+  },
+
+  'test domains.get()': function (done) {
+    mailgun.domains(fixture.domain.name).info(function (err, res, body) {
+      console.dir(res);
+      assert.ifError(err);
+      assert.equal(200, res.statusCode);
+      assert.ok(body.domain);
+      assert.equal(fixture.domain.name, body.domain.name);
+      assert.equal(fixture.domain.smtp_password, body.domain.smtp_password);
+      done();
+    });
+  },
+
+  'test domains.create() ': function (done) {
+    mailgun.domains().create(fixture.domain, function (err, res, body) {
+      assert.ifError(err);
+      assert.equal(200, res.statusCode);
+      assert.ok(body.message);
+      assert(/Domain has been created/.test(body.message));
+      assert.ok(body.domain);
+      assert.equal(fixture.domain.name, body.domain.name);
+      assert.equal(fixture.domain.smtp_password, body.domain.smtp_password);
+      done();
+    });
   }
 };
