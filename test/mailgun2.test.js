@@ -12,6 +12,23 @@ module.exports = {
     fn();
   },
 
+  'test messages.send() invalid "to"': function (done) {
+    mailgun.messages().send({}, function (err, res, body) {
+      assert.ok(err);
+      assert(/Must include "to" parameter/.test(err.message));
+      done();
+    });
+  },
+
+  'test messages.send() invalid "from"': function (done) {
+    mailgun.messages().send({to: fixture.message.to}, function (err, res, body) {
+      assert.ok(err);
+      assert(/Must include "from" parameter/.test(err.message));
+      done();
+    });
+  },
+
+
   'test messages().send()': function (done) {
     mailgun.messages().send(fixture.message, function (err, res, body) {
       assert.ifError(err);
@@ -35,7 +52,7 @@ module.exports = {
 
   'test domains.get()': function (done) {
     mailgun.domains(fixture.domain.name).info(function (err, res, body) {
-      console.dir(res);
+      //console.dir(res);
       assert.ifError(err);
       assert.equal(200, res.statusCode);
       assert.ok(body.domain);
