@@ -16,5 +16,9 @@
     "description": "Mailgun developers list"
 }, "domain" : {
   "name": "units.mailgun.org",
-  "smtp_password": "testpassword1"
+  "smtp_password": "testpassword1",
+  "credentials": {
+    "login": "postmaster2@units.mailgun.com",
+    "password": "12345"
+  }
 }}
