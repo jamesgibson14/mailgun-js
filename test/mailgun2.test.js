@@ -119,7 +119,7 @@ module.exports = {
     });
   },
 
-  'test domains.list()': function (done) {
+  'test domains().list()': function (done) {
     mailgun.domains().list(function (err, res, body) {
       assert.ifError(err);
       assert.equal(200, res.statusCode);
@@ -129,7 +129,7 @@ module.exports = {
     });
   },
 
-  'test domains.create() invalid missing address': function (done) {
+  'test domains().create() invalid missing address': function (done) {
     mailgun.domains().create({}, function (err, res, body) {
       assert.ok(err);
       assert(/Must include \"name\"/.test(err.message));
@@ -137,7 +137,7 @@ module.exports = {
     });
   },
 
-  'test domains.create() invalid missing smtp password': function (done) {
+  'test domains().create() invalid missing smtp password': function (done) {
     mailgun.domains().create({ name: fixture.domain.name }, function (err, res, body) {
       assert.ok(err);
       assert(/Must include \"smtp_password\"/.test(err.message));
@@ -145,7 +145,7 @@ module.exports = {
     });
   },
 
-  'test domains.create() ': function (done) {
+  'test domains().create() ': function (done) {
     mailgun.domains().create(fixture.domain, function (err, res, body) {
       assert.ifError(err);
       assert.equal(200, res.statusCode);
@@ -158,7 +158,7 @@ module.exports = {
     });
   },
 
-  'test domains.get()': function (done) {
+  'test domains().info()': function (done) {
     mailgun.domains(fixture.domain.name).info(function (err, res, body) {
       //console.dir(res);
       assert.ifError(err);
