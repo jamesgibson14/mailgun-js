@@ -1,24 +1,30 @@
-{ "message": {
+{
+  "message": {
     "to": "me@samples.mailgun.org",
     "from": "you@samples.mailgun.org",
     "subject": "Test email subject",
     "text": "Test email text"
-}, "route": {
+  },
+  "route": {
     "description": "Sample test route",
     "expression": "match_recipient('.*@samples.mailgun.org')",
     "action": "forward('http://myhost.com/messages/')"
-}, "mailbox": {
+  },
+  "mailbox": {
     "mailbox": "sampletestmailbox",
     "password": "password1"
-}, "mailingList" : {
+  },
+  "mailingList": {
     "address": "devtest@samples.mailgun.org",
     "name": "MailgunDev",
     "description": "Mailgun developers list"
-}, "domain" : {
-  "name": "units.mailgun.org",
-  "smtp_password": "testpassword1",
+  },
+  "domain": {
+    "name": "units.mailgun.org",
+    "smtp_password": "testpassword1"
+  },
   "credentials": {
     "login": "postmaster2@units.mailgun.com",
     "password": "12345"
   }
-}}
+}

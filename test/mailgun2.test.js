@@ -188,7 +188,7 @@ module.exports = {
   },
 
   'test domains().credentials().create() missing password': function (done) {
-    mailgun.domains(fixture.domain.name).credentials().create({ login: fixture.domain.credentials.login }, function (err, res, body) {
+    mailgun.domains(fixture.domain.name).credentials().create({ login: fixture.credentials.login }, function (err, res, body) {
       assert.ok(err);
       assert(/Must include \"password\"/.test(err.message));
       done();
@@ -204,7 +204,7 @@ module.exports = {
   },
 
   'test domains().credentials().create() invalid password type': function (done) {
-    mailgun.domains(fixture.domain.name).credentials().create({ login: fixture.domain.credentials.login, password: 123 }, function (err, res, body) {
+    mailgun.domains(fixture.domain.name).credentials().create({ login: fixture.credentials.login, password: 123 }, function (err, res, body) {
       assert.ok(err);
       assert(/Invalid parameter type./.test(err.message));
       done();
@@ -212,7 +212,7 @@ module.exports = {
   },
 
   'test domains().credentials().create()': function (done) {
-    mailgun.domains(fixture.domain.name).credentials().create({ login: fixture.domain.credentials.login, password: fixture.domain.credentials.password }, function (err, res, body) {
+    mailgun.domains(fixture.domain.name).credentials().create({ login: fixture.credentials.login, password: fixture.credentials.password }, function (err, res, body) {
       assert.ifError(err);
       assert.ok(body.message);
       done();
@@ -220,7 +220,7 @@ module.exports = {
   },
 
   'test domains().credentials().update() missing password': function (done) {
-    mailgun.domains(fixture.domain.name).credentials(fixture.domain.credentials.login).update({}, function (err, res, body) {
+    mailgun.domains(fixture.domain.name).credentials(fixture.credentials.login).update({}, function (err, res, body) {
       assert.ok(err);
       assert(/Must include \"password\"/.test(err.message));
       done();
@@ -228,7 +228,7 @@ module.exports = {
   },
 
   'test domains().credentials().update() invalid password type': function (done) {
-    mailgun.domains(fixture.domain.name).credentials(fixture.domain.credentials.login).update({ password: 123 }, function (err, res, body) {
+    mailgun.domains(fixture.domain.name).credentials(fixture.credentials.login).update({ password: 123 }, function (err, res, body) {
       assert.ok(err);
       assert(/Invalid parameter type./.test(err.message));
       done();
@@ -236,7 +236,7 @@ module.exports = {
   },
 
   'test domains().credentials().update()': function (done) {
-    mailgun.domains(fixture.domain.name).credentials(fixture.domain.credentials.login).update({ password: fixture.domain.credentials.password }, function (err, res, body) {
+    mailgun.domains(fixture.domain.name).credentials(fixture.credentials.login).update({ password: fixture.credentials.password }, function (err, res, body) {
       assert.ifError(err);
       assert.ok(body.message);
       done();
@@ -244,7 +244,7 @@ module.exports = {
   },
 
   'test domains().credentials().delete()': function (done) {
-    mailgun.domains(fixture.domain.name).credentials(fixture.domain.credentials.login).delete(function (err, res, body) {
+    mailgun.domains(fixture.domain.name).credentials(fixture.credentials.login).delete(function (err, res, body) {
       assert.ifError(err);
       assert.ok(body.message);
       done();
