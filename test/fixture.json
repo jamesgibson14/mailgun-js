@@ -20,11 +20,11 @@
     "description": "Mailgun developers list"
   },
   "domain": {
-    "name": "units.mailgun.org",
+    "name": "mgjsunits.mailgun.org",
     "smtp_password": "testpassword1"
   },
   "credentials": {
-    "login": "postmaster2@units.mailgun.com",
+    "login": "pmaster@mgjsunits.mailgun.com",
     "password": "12345"
   }
 }

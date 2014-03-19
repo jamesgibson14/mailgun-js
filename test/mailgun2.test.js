@@ -10,7 +10,7 @@ function cleanup(fn) {
   // lame hack
   var finishAfter = function () {
     counter = counter + 1;
-    if (counter >= 4) {
+    if (counter >= 1) {
       if (fn) {
         fn();
       }
@@ -18,16 +18,16 @@ function cleanup(fn) {
   };
 
   /*mailgun.mailboxes.del(fixture.mailbox.mailbox, function (err, res, body) {
-    finishAfter();
-  });
+   finishAfter();
+   });
 
-  mailgun.routes.del(routeId, function (err, res, body) {
-    finishAfter();
-  });
+   mailgun.routes.del(routeId, function (err, res, body) {
+   finishAfter();
+   });
 
-  mailgun.lists.del(fixture.mailingList.address, function (err, res, body) {
-    finishAfter();
-  });*/
+   mailgun.lists.del(fixture.mailingList.address, function (err, res, body) {
+   finishAfter();
+   });*/
 
   mailgun.domains(fixture.domain.name).delete(function (err, res, body) {
     finishAfter();
@@ -44,7 +44,7 @@ module.exports = {
       var counter = 0;
       var finish = function () {
         counter = counter + 1;
-        if (counter >= 4) {
+        if (counter >= 1) {
           if (fn) {
             console.log('Starting tests...\n');
             fn();
@@ -53,42 +53,42 @@ module.exports = {
       };
 
       /*mailgun.mailboxes.create(fixture.mailbox, function (err, res, body) {
-        if (err) {
-          console.log(err);
-          throw new Error('Failed to create sample mailbox for test setup');
-        }
-        finish();
-      });
+       if (err) {
+       console.log(err);
+       throw new Error('Failed to create sample mailbox for test setup');
+       }
+       finish();
+       });
 
-      mailgun.routes.create(fixture.route, function (err, res, body) {
-        if (err) {
-          console.log(err);
-          throw new Error('Failed to create sample route for test setup');
-        }
-        else {
-          routeId = body.route.id;
-        }
-        finish();
-      });
+       mailgun.routes.create(fixture.route, function (err, res, body) {
+       if (err) {
+       console.log(err);
+       throw new Error('Failed to create sample route for test setup');
+       }
+       else {
+       routeId = body.route.id;
+       }
+       finish();
+       });
 
-      mailgun.lists.create(fixture.mailingList, function (err, res, body) {
-        if (err) {
-          console.log(err);
-          throw new Error('Failed to create sample mailing list for test setup');
-        }
-        finish();
-      });*/
+       mailgun.lists.create(fixture.mailingList, function (err, res, body) {
+       if (err) {
+       console.log(err);
+       throw new Error('Failed to create sample mailing list for test setup');
+       }
+       finish();
+       });*/
 
-      mailgun.domains().create(fixture.domain, function (err, res, body) {
+      /*mailgun.domains().create(fixture.domain, function (err, res, body) {
         if (err) {
           console.log(err);
           throw new Error('Failed to create sample domain for test setup');
         }
         finish();
-      });
-    });
+      });*/
 
-    fn();
+       finish();
+    });
   },
 
   'test messages.send() invalid "to"': function (done) {
@@ -121,6 +121,7 @@ module.exports = {
 
   'test domains().list()': function (done) {
     mailgun.domains().list(function (err, res, body) {
+      console.dir(body);
       assert.ifError(err);
       assert.equal(200, res.statusCode);
       assert.ok(body.total_count);
@@ -260,5 +261,5 @@ module.exports = {
       assert(/Domain has been deleted/.test(body.message));
       done();
     });
-  },
+  }
 };
